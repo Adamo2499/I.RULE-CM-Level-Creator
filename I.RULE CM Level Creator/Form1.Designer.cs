@@ -40,16 +40,16 @@
             this.button3 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.levelHeartFallSpeedTextBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.levelHeartValueTextBox = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.levelStartingHeartsTextBox = new System.Windows.Forms.TextBox();
+            this.levelHeartsCapTextBox = new System.Windows.Forms.TextBox();
+            this.levelWaveAmountTextBox = new System.Windows.Forms.TextBox();
+            this.levelHeartTimerTextBox = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -134,12 +134,12 @@
             this.label4.TabIndex = 3;
             this.label4.Text = "Hearts value: ";
             // 
-            // textBox3
+            // levelHeartFallSpeedTextBox
             // 
-            this.textBox3.Location = new System.Drawing.Point(171, 95);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(125, 27);
-            this.textBox3.TabIndex = 2;
+            this.levelHeartFallSpeedTextBox.Location = new System.Drawing.Point(171, 95);
+            this.levelHeartFallSpeedTextBox.Name = "levelHeartFallSpeedTextBox";
+            this.levelHeartFallSpeedTextBox.Size = new System.Drawing.Size(125, 27);
+            this.levelHeartFallSpeedTextBox.TabIndex = 2;
             // 
             // label6
             // 
@@ -168,12 +168,12 @@
             this.label7.TabIndex = 3;
             this.label7.Text = "Hearts limit:";
             // 
-            // textBox4
+            // levelHeartValueTextBox
             // 
-            this.textBox4.Location = new System.Drawing.Point(170, 137);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(125, 27);
-            this.textBox4.TabIndex = 2;
+            this.levelHeartValueTextBox.Location = new System.Drawing.Point(170, 137);
+            this.levelHeartValueTextBox.Name = "levelHeartValueTextBox";
+            this.levelHeartValueTextBox.Size = new System.Drawing.Size(125, 27);
+            this.levelHeartValueTextBox.TabIndex = 2;
             // 
             // label8
             // 
@@ -184,46 +184,46 @@
             this.label8.TabIndex = 3;
             this.label8.Text = "Max numer of vawes: ";
             // 
-            // textBox6
+            // levelStartingHeartsTextBox
             // 
-            this.textBox6.Location = new System.Drawing.Point(185, 223);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(125, 27);
-            this.textBox6.TabIndex = 2;
+            this.levelStartingHeartsTextBox.Location = new System.Drawing.Point(185, 223);
+            this.levelStartingHeartsTextBox.Name = "levelStartingHeartsTextBox";
+            this.levelStartingHeartsTextBox.Size = new System.Drawing.Size(125, 27);
+            this.levelStartingHeartsTextBox.TabIndex = 2;
             // 
-            // textBox1
+            // levelHeartsCapTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(185, 262);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(125, 27);
-            this.textBox1.TabIndex = 2;
+            this.levelHeartsCapTextBox.Location = new System.Drawing.Point(185, 262);
+            this.levelHeartsCapTextBox.Name = "levelHeartsCapTextBox";
+            this.levelHeartsCapTextBox.Size = new System.Drawing.Size(125, 27);
+            this.levelHeartsCapTextBox.TabIndex = 2;
             // 
-            // textBox2
+            // levelWaveAmountTextBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(185, 297);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(125, 27);
-            this.textBox2.TabIndex = 2;
+            this.levelWaveAmountTextBox.Location = new System.Drawing.Point(185, 297);
+            this.levelWaveAmountTextBox.Name = "levelWaveAmountTextBox";
+            this.levelWaveAmountTextBox.Size = new System.Drawing.Size(125, 27);
+            this.levelWaveAmountTextBox.TabIndex = 2;
             // 
-            // textBox5
+            // levelHeartTimerTextBox
             // 
-            this.textBox5.Location = new System.Drawing.Point(277, 177);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(125, 27);
-            this.textBox5.TabIndex = 2;
+            this.levelHeartTimerTextBox.Location = new System.Drawing.Point(277, 177);
+            this.levelHeartTimerTextBox.Name = "levelHeartTimerTextBox";
+            this.levelHeartTimerTextBox.Size = new System.Drawing.Size(125, 27);
+            this.levelHeartTimerTextBox.TabIndex = 2;
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.textBox5);
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Controls.Add(this.textBox6);
+            this.groupBox1.Controls.Add(this.levelHeartTimerTextBox);
+            this.groupBox1.Controls.Add(this.levelWaveAmountTextBox);
+            this.groupBox1.Controls.Add(this.levelHeartsCapTextBox);
+            this.groupBox1.Controls.Add(this.levelStartingHeartsTextBox);
             this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.textBox4);
+            this.groupBox1.Controls.Add(this.levelHeartValueTextBox);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.textBox3);
+            this.groupBox1.Controls.Add(this.levelHeartFallSpeedTextBox);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.button3);
@@ -269,16 +269,16 @@
         private Button button3;
         private Label label3;
         private Label label4;
-        private TextBox textBox3;
+        private TextBox levelHeartFallSpeedTextBox;
         private Label label6;
         private Label label5;
         private Label label7;
-        private TextBox textBox4;
+        private TextBox levelHeartValueTextBox;
         private Label label8;
-        private TextBox textBox6;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private TextBox textBox5;
+        private TextBox levelStartingHeartsTextBox;
+        private TextBox levelHeartsCapTextBox;
+        private TextBox levelWaveAmountTextBox;
+        private TextBox levelHeartTimerTextBox;
         private GroupBox groupBox1;
     }
 }

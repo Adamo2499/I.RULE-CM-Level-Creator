@@ -13,7 +13,7 @@ namespace I.RULE_CM_Level_Creator
         int levelStartingHearts = 50;
         int levelHeartsCap = 9999;
         int levelWaveAmount = 10;
-        int[] levelBigWaves = new int[5];
+        List<int> levelBigWaves = new List<int>();
         bool levelDrawWaveBorder = true;
         bool levelDrawFlags = true;
         bool levelDrawWaveBar = true;
@@ -52,7 +52,7 @@ namespace I.RULE_CM_Level_Creator
         int levelConditionMaxTotalHearts;
         int levelConditionBabiesKilled; //checkbox: Don't let X or more babies  to be killed (Self-destructing, instant-use and shovelled babies count as dead as well)
         int levelConditionMaxBabiesOnScreen;
-        String[] customSoundFiles = { "", "", "" };
+        List<String> customSoundFiles = new List<string>();
 
 
 
@@ -64,6 +64,10 @@ namespace I.RULE_CM_Level_Creator
         public Form1()
         {
             InitializeComponent();
+            levelBigWaves.Add(10);
+            customSoundFiles.Add("");
+            customSoundFiles.Add("");
+            customSoundFiles.Add("");
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -88,6 +92,7 @@ namespace I.RULE_CM_Level_Creator
             }
             levelNameColor = colorDialog1.Color.ToString();
             levelDescriptionColor = colorDialog2.Color.ToString();
+
             MessageBox.Show("Level saved!");
             Environment.Exit(0);
         }
