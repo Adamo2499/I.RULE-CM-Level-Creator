@@ -1,0 +1,575 @@
+In order to make a level, simply create a .json file in the levels/custom/ folder of the game. Use "example level.json" as reference and use this file to find out what exactly the variables in it do.
+
+To make this file easier to read, take it out of the game folder and turn it into a .json file. Do not try to launch it in-game though, as it will crash due to all these "comments", which are not actually comments because .json files don't allow those.
+If you are getting a JSON parsing error while starting your level, check if there are commas at the end of each line that doesn't end with a colon or an open bracket.
+
+All levels can be started with less than 4 babies. Champions will never spawn on their own. Random coin drops are disabled. Poop will never become golden or icy unless specified otherwise.
+Flag waves will not display the "huge wave incoming" message on their own, use "displayMessage" and "displayMessage2" variables for that.
+
+No variable/array/table is necessary to start a level, you should be able to play it even if your .json file only has a pair of curly brackets.
+
+{
+	"levelName": "Example Level", - name of your level. Will be displayed when hovering over the level name and while playing. "Unnamed Level" by default.
+	"levelDescription": "Have fun making your own!", - description of your level. Will only be displayed when hovering over the level file. "" by default.
+	"levelNameColor": 16776960, - color of the level name, applies while hovering over the level and while playing it. Does not apply if the level is locked. Accepts both Gamemaker's built-in colors ( https://manual.yoyogames.com/GameMaker_Language/GML_Reference/Drawing/Colour_And_Alpha/make_colour_rgb.html ) and decimal color values, although be warned that Gamemaker seems to swap the Red and Blue values in decimals for some reason. "c_white" by default.
+	"levelDescriptionColor": "c_fuchsia", - color of the level description, applies only while hovering over the level if it is not locked. Everything from "levelNameColor" applies to this variable too. "c_gray" by default.
+	"levelHeartFallSpeed": 10, - rate at which hearts/cards fall from the sky, in relation to the regular one (2 = drop twice as frequently, 0.5 = drop half as frequently). 1 by default.
+	"levelHeartValue": 690, - value of hearts that fall from the sky. Doesn't affect their size. 50 by default.
+	"levelHeartSize": 0.75, - size of hearts that fall from the sky, in relation to the regular one. Doesn't affect their value. 1 by default.
+	"levelHeartTimer": 300, - starting timer of hearts that fall from the sky. Hearts disappear when it reaches 560. 0 by default.
+	"levelStartingHearts": 34, - the amount of hearts you start the level with, before bonuses from <3 and/or Candy Heart are applied. (<3 adds 50 and Candy Heart adds 150.) 50 by default.
+	"levelHeartsCap": 999999, - overrides the game's weird 9000 hearts limit. 9999 by default.
+	"levelWaveAmount": 54, - total amount of waves in the level. 10 by default.
+	"levelBigWaves": [10,20,26,30,45], - waves that count as huge ones, from earliest to latest. Marked with a flag on the wavebar and cause a 'huge wave" message + sound to appear. If big waves are far apart, the wavebar might look weird due to its borders being stretched. [10] by default.
+	"levelDrawWaveBorder": 0, - determines if a wavebar border will be drawn. You might want to disable it if you have a long level with few flags. (0 = false, 1 = true.) 1 by default.
+	"levelDrawFlags": 0, - determines if flags will be drawn on the wavebar. (0 = false, 1 = true.) 1 by default.
+	"levelDrawWaveBar": 1, - determines if the wavebar will be drawn. If this is set to 0, flags and wavebar border will not be drawn either. (0 = false, 1 = true.) 1 by default.
+	"levelTimerSpeed": 2, - speed at which the level timer moves forward. When level timer reaches 550, a wave is spawned and the timer is set to a different value (see "levelDefaultTimerAfterWave"). 0.5 by default.
+	"levelSpawnDelay": 548,	- initial position of the level timer. Normally set to (-100 - (10 * [level number])). Don't set this higher than 548 if your level has any objects which are supposed to spawn at the start of it. -115 by default.
+	"levelTimerSpeedAltCondition": "less", - condition for the level timer's alt speed. If set to "less", the timer will move at alternate speed if the current amount of enemies is less than "levelEnemiesForAltSpeed". If set to "more", vice versa. "less" by default.
+	"levelEnemiesForAltSpeed": 1, - if the current amount of enemies is (less/more) than this value, the level timer will move at an alternate speed. Doesn't apply until the first wave spawns. 1 by default.
+	"levelTimerSpeedAlt": 1, - alternate speed at which the level timer moves forward. 1 by default.
+	"levelDefaultTimerAfterWave": -150, - default value to which the timer will be set after a wave is sent out, unless a different one is specified in the wave itself. In vanilla, this is equal to ((-200 + (15 * [number of the wave that got sent out])) + [random number between 0 and 33]) for waves before wave 20, and simply (100 + [random number between 0 and 33]) for wave 20 and beyond. -115 by default.
+	"levelIntensity": 0, - responsible for making the second layer of music play and darkening the borders of the screen. In vanilla, it is set to 0, becomes 1 at the start of every flag wave and then gets set to 0 again after 5 more waves pass. Values above 1 will have the same effect as 1. 0 by default.
+	"levelIntensityChangeMultiplier": 0.25, - multiplier affecting how quickly "levelIntensity" changes. 1 by default.
+	"levelBackground": "lvl2", - background image of the level. Accepted values are "lvl1", "lvl2", "lvl3", "megaPlum", "ragdoll" and "middleHorn". The last 3 also affect where you can place babies. "lvl1" by default.
+	"levelMusic1": "mus_boss3", - main theme of the level. Get quieter as "levelIntensity" gets higher. Names of the music files are the same as ones in the game folder, without extensions. Can be set to "" if you don't want any music to play. "mus_ch1" by default.
+	"levelMusic2": "cellar layer.ogg", - intense theme of the level. Get louder as "levelIntensity" gets higher. Names of the music files are the same as ones in the game folder, without extensions. Can be set to "" if you don't want any intense music to play. "mus_ch1_layer" by default.
+	"levelDrawTimer": 1, - if set to 1, the level timer and by how much it advanced during the last frame will be displayed above the level name. 0 by default.
+	"levelCampaignLocked": -1, - this level is inaccessible until you've finished this amount of campaign levels. -1 by default.
+	"levelHiddenUntilUnlocked": 0, - if set to 1, this level won't show up in the menu until you've completed enough campaign levels to play it. 0 by default.
+	"levelSpikeBabyDoesntBreakPoop": 1, - not just limited to poop, actually. When a squirt/hardy pushes an object on top of Spike Baby, both the object and Spike Baby get destroyed. If set to 1, the object will survive like it would with other babies. 0 by default.
+	"levelDisableCHADScaling": 1, - disables the odd mechanic that makes heart generating babies' cooldowns scale with their amount on the field (+120 frames for each CHAD and +240 frames for each Double Baby, including itself). If you want to use this, you should increase the "productionspeed" value for CHAD and Double Baby via "levelBabyRebalance" because they will be spawning way too many hearts otherwise. 0 by default.
+	"levelBobsBrainExtraHealth": -999, - when Bob's Brains grow up, their health will be increased (or decreased) by this value. 0 by default.
+	"levelBobsBrainExplodeUponDeath": 1, - if set to 1, full-grown Bob's Brains will explode even if they are killed by something other than self-destruction. 0 by default.
+	"levelBobsBrainNoSound": 1, - if set to 1, Bob's Brains will not play their growing up sound. 0 by default.
+	"levelFrozenSpriteCap": -1, - if not set to -1, caps the maximum iceberg sprite on non-fully frozen babies to a certain sub-sprite. I added this because babies that have 120+ freeze (which almost never happens in vanilla) look confusingly similar to fully frozen ones. 2 by default.
+	"defaultIcePoopDontConvertPoop": 1, - default value of "dontConvertPoop" for ice poop. 0 by default.
+	"defaultIcePoopDontFreezeEnemies": 1, - default value of "dontFreezeEnemies" for ice poop. 0 by default.
+	"defaultIcePoopFreezePower": 180, - default value of "freezePower" for ice poop. 60 by default.
+	"defaultIcePoopEnemyFreezePowerMult": 0.1337, - default value of "enemyFreezePowerMult" for ice poop. 1 by default.
+	"levelFlyDontBuzzEarly": 1, - if set to 1, flies will not start buzzing until they are on screen. 0 by default. 
+	"levelMaxBabies": 5, - maximum amount of babies you can have in the level. If you have School Bag (check "levelPassivesT2"), this value is increased by 1. 4 by default.
+	"levelDisableCoinHUD": 1, - disables the coin HUD. Should be set to 1 if you are using conditions since otherwise the HUD will be obstructing them. 1 by default.
+	"levelMulliboomDefaultExplosionBabyDamage": 4321, - default value of "explosionBabyDamage" for mullibooms. 2000 by default.
+	"levelMulliboomDefaultExplosionTileDamage": 5312, - default value of "explosionTileDamage" for mullibooms. 2000 by default.
+	"levelConditionEndWithHearts": 2000, - if you do not have this amount of hearts (or more) at the end of the level, it will be failed.
+	"levelConditionCollectTotalHearts": 6900, - if you have not collected this amount of hearts by the time the level ends, it will be failed. Collected hearts are counted even if they didn't increase your heart amount due to "levelHeartsCap". Starting hearts are counted too.
+	"levelConditionMaxTotalHearts": 9999, - maximum amount of hearts the player can get during the level. Picking them up after the limit has been reached will have no effect. Collected hearts are counted even if they didn't increase your heart amount due to "levelHeartsCap". Starting hearts are counted too.
+	"levelConditionBabiesKilled": 10, - if this amount of babies have died, the level is failed. Self-destructing, instant-use and shovelled babies count as dead as well. Charmed enemies do not count.
+	"levelConditionMaxBabiesOnScreen": 7, - maximum amount of babies that are allowed to be on screen, if the player tries to place more, nothing will happen. Charmed enemies do not count. Keep in mind that this limit can be avoided via the Brown Ritual, Fiend's Imp spawning ability, airdropped babies and shitstorms, so do not forget to ban/not include those things in levels with this condition.
+	"customSoundFiles": ["cellar.ogg", "cellar layer.ogg", "Satan find.ogg"], - if you want to use custom music/sounds in your level, put their full filenames + extentions in this array. Files need to be located in levels/extrafiles/ and must be in the .ogg format for this to work. If done correctly, you will be able to use them in "levelMusic" and "playSound" by setting those variables to the full filenames + extentions. Yes, I know that using .ogg for sounds is wrong, but I doubt it will cause any issues with the game.
+	^^^Setting these variables used to be mandatory prior to the recent update, but now they will be set to default values if they're not included in your .json file.^^^
+	
+	"levelWaveChanges": - fill in this table if you want to change *any* of the variables/arrays/tables mentioned in this document when certain waves spawn. You can even try to change things like "levelPassives", "levelWaves" or "levelWaveChanges" itself, but there's no guarantee that it will work properly. If you don't want any of this, you can remove the table.
+	{
+		"wave3": - when this wave spawns, the variables below will be changed to specified values. In vanilla, it only happens at wave 3 of every level.
+		{
+			"levelTimerSpeed": 1, - vanilla value after wave 3
+			"levelTimerSpeedAltCondition": "less", - vanilla value after wave 3
+			"levelEnemiesForAltSpeed": 3, - vanilla value after wave 3
+			"levelTimerSpeedAlt": 2, - vanilla value after wave 3
+			"levelIntensity": 0.25,
+		},
+		"wave8":
+		{
+			"levelHeartFallSpeed": 0,
+			"levelIntensity": 1,
+		},
+		"wave10":
+		{
+			"levelBackground": "lvl3",
+			"levelMusic1": "cellar.ogg",
+			"levelMusic2": "mus_boss1",
+		},
+		"wave21":
+		{
+			"levelHeartFallSpeed": 1,
+			"levelDrawFlags": 1,
+			"levelIntensity": 0,
+		},
+		"wave26":
+		{
+			"levelName": "EXAMPLE LEVEL!!!",
+			"levelDrawWaveBorder": 1,
+		},
+		"wave34":
+		{
+			"levelHeartValue": 100,
+			"levelHeartSize": 1.5,
+			"levelHeartTimer": -200,
+			"levelDrawWaveBar": 0,
+			"levelName": "",
+		},
+	},
+	
+	"levelWaves": - table containing info about each wave in a level. If a wave is not defined here, no enemies will spawn, but "levelWaveChanges" will still apply, and vice versa.
+	{
+		"wave1": - table containing info about wave 1. Everything below can be omitted - you can have waves that don't spawn anything, if you want to.
+		{
+			"enemies": - table containing info about all enemies in a wave.
+			[
+				{
+					"name": "o_trite", - name of the enemy (or any other gamemaker game object that you want to spawn). "o_gaper" by default. 
+					"lane": [2,3,5], - possible lanes where the enemy can spawn (1 = top, 6 = bottom). [1,2,3,4,5,6] by default.
+					"xOffset": -10, - horizontal offset of the enemy, in pixels. Random between 0 and 30 by default. 1 tile = 45 pixels.
+				},
+				{
+					"name": "o_hardhead",
+					"lane": [2],
+					"health": 240, - sets the enemy's health and max health to the specified value. Always applied before champion health boosts.
+					"speedMod": 1 - the speed modification of a monster. The default value is always randomized when it spawns and the boundaries for this randomization vary between monster types. For example, Gapers can get 0.2 - 0.425 speedMod when they appear. To check the vanilla boundaries, open I.RULE's data.win via UndertaleModTool, find the monster's game object and open its Create event.
+				},
+			],
+			"levelSpawnDelay": -200, - what the timer will be set to after the wave spawns. If unspecified, timer will be set to the value defined in "levelDefaultTimerAfterWave".
+			"waveNotification": 0  - if set to 0, no sound will play when the wave spawns and will prevent "displayMessage" & "displayMessage2" from triggering. 1 by default, but if no enemies are spawned and it is not manually set to 1 it becomes a 0.
+		}, - wave 2 is unspecified, spawns nothing and doesn't play the sound
+		"wave3": - spawns nothing, but plays the sound
+		{
+			"levelSpawnDelay": 400,
+			"waveNotification": 1,
+		},
+		"wave4": - spawns nothing, but plays the sound
+		{
+			"enemies":[],
+			"levelSpawnDelay": 200,
+			"waveNotification": 1,
+		},
+		"wave5": - spawns a gaper
+		{
+			"enemies":
+			[
+				{} 
+			],
+			"levelSpawnDelay": 200,
+		},
+		"wave6": - spawns nothing
+		{
+		},
+		"wave7":
+		{
+			"enemies":
+			[
+				{
+					"name": "o_gurgle",
+					"lane": [4,6],
+					"damage": 69, - damage of the monster. For most monsters, default is 8; most babies have 80 hp.
+					"pillChampion": 1, - green champion, hp is multiplied by 1.5, drops a pill upon death.
+					"noChampionDrop": 1, - doesn't drop anything. So no pill.
+				},
+				{
+					"name": "o_gurgle",
+					"heartChampion": 1, - red champion, hp is multiplied by 2, drops 3 small hearts (each is worth 25 points) upon death.
+					"noChampionDrop": 1,
+				},
+				{
+					"name": "o_gurgle",
+					"lane": [1],
+					"moneyChampion": 1, - yellow champion, hp is multiplied by 3, drops 3 coins upon death.
+					"noChampionDrop": 1,
+					"health": 222,
+				},
+			],
+		},
+		"wave8":
+		{
+			"enemies":
+			[
+				{
+					"name": "o_mulliboom",
+					"lane": [2],
+					"speedChampion": 1, - fast champion, speed multiplied by 2.
+					"speedMod": 0.6,
+					"scale": 0.5, - scale of the enemy. Default value varies.
+					"shadowScale": 3, - scale of the enemy's shadow. Default value varies.
+				},
+				{
+					"name": "o_mulliboom",
+					"lane": [2],
+					"clonesChampion": 1 - clone champion, spawns 2 clones upon death.
+				},
+			],
+			"levelSpawnDelay": -200,
+		},
+		"wave9":
+		{
+			"enemies":
+			[
+				{
+					"name": "o_hardy",
+					"lane": [3],
+					"pillChampion": 1,
+					"heartChampion": 1,
+					"speedChampion": 1,
+					"moneyChampion": 1,
+					"clonesChampion": 1,
+				},
+			],
+		},
+		"wave12":
+		{
+			"enemies":
+			[
+				{
+					"name": "o_whale",
+					"lane": [6],
+					"xOffset": -500,
+					"otherVars": ["scale", "eatenBaby"], - needs to be paired with "otherVarsValues". If you want to set some specific variable for the spawned enemy/object, enter the variable name here and the value in "otherVarsValues". For example, these lines will set o_whale's "scale" to 1.5 and "eatenBaby" to 1.
+					"otherVarsValues": [1.5, 1], - needs to be paired with "otherVars".
+				},
+				{
+					"name": "o_whale",
+					"lane": [5],
+					"xOffset": -500,
+					"otherVars": ["scale", "eatenBaby"],
+					"otherVarsValues": [1.5, 1],
+				},
+				{
+					"name": "o_whale",
+					"lane": [1],
+					"xOffset": -500,
+					"otherVars": ["scale", "eatenBaby"],
+					"otherVarsValues": [1.5, 1],
+				},
+				{
+					"name": "o_whale",
+					"lane": [2],
+					"xOffset": -500,
+					"otherVars": ["scale", "eatenBaby"],
+					"otherVarsValues": [1.5, 1],
+				},				
+			],
+			"levelSpawnDelay": 500,
+			"waveNotification": 0,
+			"displayMessage": "finalWave", - message that will be shown when the wave starts. Can be set to "hugeWave", "finalWave", "shitstormRed", "shitstormBrown", "shitstormYellow", "shitstormBlue" and "infestation". Will not work if "waveNotification" is set to 0, so no message will be shown in this example.
+			"displayMessage2": "shitstormBlue", - a follow-up message which will be shown after the first one. Same rules apply.
+		},
+		"wave15":
+		{
+			"enemies":
+			[
+				{
+					"name": "o_shitstorm", - shitstorms are spawned like enemies.
+					"lane": [3],
+					"xOffset": 0,
+					"distToTravel": 244, - approximate distance the shitstorm needs to cover before coming to a stop, in pixels. 1 tile = 45 px. Tends to be kind of imprecise due to deceleration, so you'll need to play around with numbers a bit. 180 by default.
+					"timeToTravel": 60, - approximate time it takes for the shitstorm to cover the specified distance, in frames. Tends to be kind of imprecise due to deceleration, so you'll need to play around with numbers a bit. 60 by default.
+					"initialDelay": 60, - how much time it takes for the shitstorm to spawn the first thing after coming to a stop. 60 by default.
+					"fallTime": 120, - how much time it takes for things to appear in the room after being fired out of the storm. 120 by default.
+					"speedUpFactor": 1, - affects how quickly the shitstorm will increase its spewing speed. The formula goes like this: delayBeforeSpawn = (initialDelay / ('number of the object which was just spawned' * speedUpFactor)). 1 by default.
+					"dontSpeedUp": 0, - if set to 1, the spewing speed will not increase and everything will be spawned at regular intervals which are equal to "initialDelay", unless time to spawn the next thing is set manually via "shitstormTimer". 0 by default.
+					"extraEffect": "midasBabies", - what the shitstorm will do to babies caught underneath it. Can be set to "killBabies", "freezeBabies", "midasBabies" (turns babies into golden poop) or "none". "none" by default.
+					"skin": "ice", - skin of the shitstorm. Can be set to "regular", "gold" or "ice". "regular" by default.
+					"effectAffectCharmed": 0, - if set to 1, charmed enemies will also be affected by "extraEffect". 1 by default.
+					"midasHealthRatio": 63, - health multiplier applied to the baby when converting it into golden poop. Does nothing if "extraEffect" is not set to "midasBabies". 6.25 by default.
+					"midasHealthRatioCharmed": 21, - health multiplier applied to the charmed enemy when converting it into golden poop. Does nothing if "extraEffect" is not set to "midasBabies" or "effectAffectCharmed" is not set to 1. 3 by default.
+					"delayBeforeDeparture": 0, - how much time it takes for the shitstorm to start moving back after spawning the last object. 30 by default.
+					"delayBeforeAppear": 60, - how much time it takes for the shitstorm to spawn after the wave has started. 0 by default.
+					"scale": 0.5, - size of the shitstorm. 1 by default. It would be a good idea to make non-harmful storms look smaller than ones which will hurt babies and to keep the size proportionate to how many things they will spawn.
+					"scaleReduction": 0.1, - by how much the shitstorm's size will decrease each time it spawns something. 0 by default.
+					"silentRetreat": 1, - if set to 1, the shitstorm will not emit any sound when it starts moving back. 0 by default.
+					"dontComeBack": 1, - if set to 1, the shitstorm will continue moving to the left after it's done spawning stuff instead of returning to the right. 0 by default.
+					"spawnWhileMoving": 1, - if to 1, the shitstorm will not wait until it has stopped to start spawning things. The countdown to the first spawn will start as soon as it appears. 0 by default.
+					"defaultStun": 120, - enemies spit out by the shitstorm will be stunned for the specified amount of frames. If you set define a "stun" variable for the enemy in "stuffToSpawn", this value will be overriden by it. 0 by default.
+					"stuffToSpawn": - array of things which will be fired out of the shitstorm, in order. Setting this up is almost identical to setting up a wave in "levelDropObjects", except "spawnType" is always set to "drop" and there is an additional variable "shitstormTimer". If defined, the "timer" variable for objects will override the value set by "fallTime".
+					[
+						{
+							"name": "o_gaper",
+							"col": [8,9],
+							"lane": [4,6],
+							"checkOccupied": 0,
+						},
+						{
+							"name": "o_gaper",
+							"col": [8,9],
+							"lane": [4,6],
+							"checkOccupied": 0,
+							"stun": 360, - overrides "defaultStun" from the shitstorm.
+						},
+						{
+							"name": "o_poop",
+							"col": [4,5,6],
+							"checkOccupied": 2,
+							"damageToOccupied": 69420,
+							"poopType": "gold",
+							"dontDropMoney": 1,
+							"otherVars": ["maxhp", "hp"],
+							"otherVarsValues": [200, 50],
+							"playSound": "sacrifice_Seraphim",
+							"shitstormTimer": 5, - manually set the time it will take for the shitstorm to spawn the next thing after spawning this one. Does not affect the shitstorm's spewing speed for further objects.
+						},
+						{
+							"name": "o_poop",
+							"checkOccupied": 3,
+							"poopType": "ice",
+							"otherVars": ["maxhp", "hp"],
+							"otherVarsValues": [200, 1],
+						},
+					],
+				},
+			],
+			"displayMessage": "shitstormYellow",
+			"displayMessage2": "shitstormRed",
+		},
+		"wave17":
+		{
+			"enemies":
+			[
+				{
+					"name": "o_fatty",
+					"lane": [6],
+					"fartDisabled": 1, - special variable for fatties. If set to 1, this fatty will lose the ability to fart. 0 by default.
+					"xOffset": 0,
+					"repeatSpawn": 3, - convenience variable that allows you to spawn multiple enemies from the same table. All of them will share variables that you specified, but randomized ones (like speedMod in this example) will not be the same.
+					"repeatExtraOffset": 90, - distance between enemies spawned via "repeatSpawn". Increases every next enemy's xOffset by the value you specified.
+				},
+				{
+					"name": "o_fly",
+					"lane": [3],
+					"flyType": "double", - special variable for flies which defines their type. Can be set to "double" or "quad". If not specified, you will spawn regular flies.
+					"xOffset": 0,
+				},
+				{
+					"name": "o_fly",
+					"lane": [5],
+					"spriteIndex": "fly_quad", - variable used for setting a different sprite to your enemy. Also affects their behavior in some cases, like with flies. Use UndertaleModTool to find sprite names.
+					"xOffset": 0,
+				},
+			],
+		},
+		"wave18":
+		{
+			"enemies":
+			[
+				{
+					"name": "o_trite", - trites are spawned differently from other enemies. They will always appear in the same spot even if you change their xOffset.
+					"lane": [3],
+					"randomLeaps": 2, - whether the trite should follow its standard up -> down pattern or move randomly. Overrides "leapStraight". Can be set to 0, 1 or 2. 0 = no random leaps, 1 = randomly chooses between jumping up or down, 2 = randomly chooses between jumping up, straight or down. 0 by default.
+					"leapStraight": 1, - whether the trite should jump forward instead of following its standard up -> down pattern. Overriden by "randomLeaps". 0 by default.
+					"leapDist": 2, - maximum amount of tiles the trite will cover with a single jump, if there are no babies in the way, except for Spike Baby (unless "canHitSpikeBaby" is set to 1).
+					"speedMod": 0.05, - "speedMod" works weirdly for trites, since they always have it set to 0.2 in vanilla. It does affect their jump speed though, which is helpful combined with other variables.
+					"fixedLeapTimer": 100, - the value a trite's jump timer will be set to after it lands. 0 in vanilla. Trites jump when their timer reaches 140. Timer is affected by "speedMod".
+					"immuneInMidair": 1, - whether the trite should be immune to tears which cannot hit flying enemies while jumping and during its attack animation. Does not apply when the trite is past your defenses.
+					"leapDirInitial": 0, - initial direction of the trite. 0 = forward, 1 = down, -1 = up. Randomly chooses -1 or 1 by default. Becomes 0 if leapStraight is set to 1. Randomly chooses -1, 0 or 1 if randomLeaps is set to 2.
+					"idleAnimationBasedOnSpeed": 0, - whether the speed of trite's idle animation, attack animation should be dependent on its "speedMod". If this is set to 0, the speed of walking towards your room when past defenses will also be affected by "speedMod". I recommend setting this to 0 if you have a trite with low speed. 1 by default.
+					"disableBabyCheck": 1, - if set to 1, the trite will not jump forward if there is a baby on the next tile up or down (affected by "leapDist") and will continue its standard movement. 0 by default.
+					"leapTimerInitial": 100, - initial position of the trite's leap timer which immediately starts ticking up after it spawns. You can use this as an xOffset replacement. If unspecified, uses the "fixedLeapTimer" value. If "fixedLeapTimer" is also unspecified, uses the default value. 0 by default.
+					"leapRecovery": 160, - how much time it takes for the trite to finish its leap. Usually it jumps when its timer reaches 140 and the countdown gets reset when it reaches 170. The animation will look dumb if you have a low-speed trite, so you can use this variable to change 170 into a different number. However, this can cause the trite to lose its landing sound or mess up its movement, so make sure to test it out first.
+					"triteAttackSpeed": 0.1, - overrides the trite's attack speed with this number, even if "speedMod" is different or idleAnimationBasedOnSpeed is set to 1.
+					"repeatSpawn": 2,
+					"repeatTriteTimerOffset": -90, - similar to "repeatExtraOffset", but for trites. Will affect "leapTimerInitial" instead of "xOffset".
+				},
+			],
+			"showText": - displays text when the wave starts.
+			{
+				"text": "Here's some interesting text to read@while babies are shooting at stuff@@@@@@@@@@@@@@@", - text to be shown. Paragraphs are signified with the @ symbol. Normally the text appears at the bottom of the screen, but you can push it up by adding a bunch of @s at the end.
+				"delay": 950, - how many frames it will take for the text to start appearing, after the wave spawns.
+				"timer": 600, - how many frames it will take for the text to start fading out after it has fully faded in.
+				"color": "c_white", - color of the text. Accepts both Gamemaker's built-in colors ( https://manual.yoyogames.com/GameMaker_Language/GML_Reference/Drawing/Colour_And_Alpha/make_colour_rgb.html ) and decimal color values, although be warned that Gamemaker seems to swap the Red and Blue values in decimals for some reason. "c_white" by default.
+				"alphaCap": 0.5, - maximum opacity of your text.
+			},
+			"levelSpawnDelay": -10,
+		},
+		"wave19":
+		{
+			"enemies":
+			[
+				{
+					"name": "o_squirt", - squirts and dips are technically the same enemy in the game (thanks Hummer), so spawning them is a bit convoluted.
+					"lane": [4],
+					"xOffset": -90,
+					"speedMod": 0.025, - speedMod works as you would expect with squirts and dips, but it does not affect the duration of their dash.
+					"fixedDashTimer": 180, - after a squirt/dip finishes dashing, this is what their dash cooldown gets set to. Squirts dash when it reaches 180 and dips dash when it reaches 30. The cooldown is unaffected by "speedMod". Randomized between -25 and 25 by default.
+					"fixedDashTimerMini": 30, - when the squirt dies, its babies' "fixedDashTimer" will be set to this value. Don't mistake this for a value that actually affects dips' dash timer. If you are spawning a dip and not a squirt, you need to change "fixedDashTimer". undefined by default.
+					"dashTimerInitial": 0, - initial value of a squirt's/dip's dash cooldown. 0 by default.
+					"dashTimerInitialMini": -9999, - when the squirt dies, its babies' "dashTimerInitial" will be set to this value. Same rules as with "fixedDashTimerMini". 0 by default.
+					"pushForceSelf": 0, - by how much the squirt/dip is going to get pushed back when it hits something. 0.5 by default.
+					"pushForceEnemies": 0.1337, - how much knockback the squirt will inflict onto other enemies if one of them is charmed. 0.33 by default.
+					"pushForceObjects": 45, - how far the squirt is going to push obstacles it hits, in pixels. Keep the values divisible by 45, as that is the length of one tile. Very buggy when pushing more than 1 object and you probably should not set it to anything other than 45, 0 or -45. 45 by default.
+					"dashFalloffMult": 0, - how quickly the squirt/dip will decelerate while dashing. 1 by default.
+					"dashDuration": 99999, - duration of the squirt's/dip's dash. 33 by default.
+					"dashDurationMini": 22, - when the squirt dies, its babies' "dashDuration" will be set to this value. Same rules as with "fixedDashTimerMini". 11 by default. 
+					"sexyDeepVoice": 1, - squirts' screams will be slowed down and will have lower pitch. 0 by default.
+					"preggers": 3, - determines how many dips will be spawned after the squirt dies. 0 = no dips, 1 = 1 dip spawned right where the squirt died, 2 = 2 dips as normal, 3 = 2 dips on the same lane. 2 by delault.
+					"squirtStage": "squirt", - determines whether you are spawning a squirt or a dip. Unsurprisingly, can be set to "squirt" or "dip". "squirt" by default.
+					"squirtType": "gold", - determines the skin and abilities of a squirt/dip. Can be set to "regular", "gold" and "ice". If "squirtStage" is set to "squirt" (or not set at all since that is the default value), setting this to "gold" will double the damage of your enemy, increase its "scale" & "shadowscale" by 0.5 and set its "immunedToGases" to 1. If this is set to "ice", squirts will create an ice explosion upon death and freeze babies that they hit. Dips will only freeze babies and won't explode. "regular" by default.
+					"freezePower": 420420420, - when an ice squirt/dip hits an enemy, it inflicts (freezePower/10) freeze on them. When an ice squirt/dip hits a baby, it inflicts its full freezePower on them. When an ice squirt explodes, it inflicts freezePower/2 on babies and, if "dontFreezeEnemies" is not set to 1, freezePower/18 on grounded enemies and freezePower/30 on flying enemies. For enemies, this value is also multiplied by "enemyFreezePowerMult". 180 freeze is needed to freeze a baby. 180 by default.
+					"enemyFreezePowerMult": 0, - multiplier which will be applied when freezing enemies via the ice explosion. 0.66 by default.
+					"dontConvertPoop": 1, - the ice explosion will not turn regular poop into ice poop. 0 by default.
+					"dontFreezeEnemies": 0, - the ice explosion will not affect enemies. 0 by default.
+					"dontScreamAfterStarting": 1, - if set to 1, the squirt will only scream when it charges for the first time. 0 by default.
+					"canHitSpikeBaby": 1, - not exclusive to squirts/dips. Allows the enemy to attack Spike Babies. Dips do not inherit this. 0 by default.
+					"animationSpeedMult": 2, - multiplies the animation speed by this number. 1 by default.
+					
+					When squirts die and spawn dips, the dips' damage gets set to [squirt's damage]/3, maxhp and hp = [squirt's maxhp / 5.3333], freezePower = [squirt's freezePower / 3]. Most other variables are inherited, unless there is a "-Mini" version of them, in which case the dip's variable will be set to that.
+				},
+			],
+			"levelSpawnDelay": -500,
+		},
+		"wave20":
+		{
+			"enemies":
+			[
+				{
+					"name": "o_maw",
+					"lane": [4],
+					"projSpeed": 1, - initial speed of maw's projectile, has acceleration. 5 by default.
+					"shootDistance": 5, - maw's maximum range, in tiles. 3 by default.
+					"shootTimer": 10, - number of frames between each shot, independent from "speedMod", but affected by "speedChampion". Setting this to 4 or less is not a good idea. 70 by default.
+				},
+			],
+			"levelSpawnDelay": -300,
+			"playSound": "s_domestic_abuse", - plays a sound when the wave starts. Use UndertaleModTool to find sound names.
+		},
+		"wave21":
+		{
+			"enemies":
+			[
+				{
+					"name": "o_mrShy",
+					"lane": [4],
+					"xOffset": 0,
+					"speedMod": 0.3,
+					"maskChampion": "moneyChampion", - paints the mask and multiplies its health in accordance with the champion type. Accepted variables are "pillChampion", "heartChampion", "moneyChampion" and "clonesChampion", although the last one does not do anything besides turning the mask purple. Does not cause MrShy to drop champion pickups upon death.
+				},
+			],
+			"levelSpawnDelay": -300,
+			"displayMessage": "infestation",
+		},
+		"wave22":
+		{
+			"enemies":
+			[
+				{
+					"name": "o_mulliboom",
+					"lane": [4],
+					"explosionBabyDamage": 80, - how much damage mulliboom's explosion is going to deal to babies. Uses "levelMulliboomDefaultExplosionBabyDamage" as the default value.
+					"explosionTileDamage": 690, - how much damage mulliboom's explosion is going to deal to tiles (poops, sorbets, icebergs). Uses "levelMulliboomDefaultExplosionTileDamage" as the default value.
+					"timeToExplode": 800, - how much time it takes for the mulliboom to blow up, in frames. Also affects how rapidly the mulliboom beeps when primed. 30 by default.
+				},
+			],
+			"levelSpawnDelay": -300,
+		},
+	},
+	
+	"levelDropObjects": - table containing info about which objects will spawn when certain waves begin and when the level starts.
+	{
+		"wave0": - stuff described in this array will spawn at the start of the level, but only if "levelSpawnDelay" is set to 548 or lower.
+		[
+			{
+				"name": "o_poop", - name of the spawned gamemaker object, can be anything you want as long as the name is correct. Default value is "o_poop".
+				"col": [3,4,6], - possible columns where the object can spawn (1 = furthest to the left, 10 = furthest to the right). If not defined, randomly picks any column.
+				"lane": [4,5], - possible lanes where the object can spawn (1 = top, 6 = bottom). If not defined, randomly picks any lane.
+				"checkOccupied": 0, - can be set to 0, 1, 2, 3 or 4. If 0, the object will simply spawn at the specified (or unspecified) position even if it is occupied by something else. If 1, it will not spawn if that spot is occupied. If 2, it will deal damage to itself and the object that is currently occupying the spot until one of them dies. If 3, it will randomly shift its x/y position until it finds a free spot and will not appear if it fails to do so. If 4, it is the same as 1, but if the position is occupied by something else, it will wait until the spot clears up and spawn after that. Default is 3.
+				"poopType": "ice", - the type of poop which will be spawned. Can be set to "normal", "gold" or "ice". Works only if "name" is set to "o_poop". By default, normal poop has 200 hp & maxhp, gold has 1000 and ice has 800.
+				"spawnType": "drop", - how the object will spawn. If set to "poof", the object will also spawn a puff of smoke when it appears. If set to "drop", the object will be dropped from the ceiling. If set to anything else, the object will simply appear without any special effect. Defaults to "poof". Note that only babies, enemies and props will work properly with "drop".
+				"health": 69, - sets "hp" and "maxhp" of the spawned object to this value.
+				"dontConvertPoop": 0, - if set to 1, ice poop will not convert regular poop caught in its blast into ice poop. Uses "defaultIcePoopDontConvertPoop" as the default value.
+				"dontFreezeEnemies": 0, - if set to 1, ice poop will not freeze enemies caught in its blast. Uses "defaultIcePoopDontFreezeEnemies" as the default value.
+				"freezePower": 90, - the power of the ice poop's explosion. 180 is needed to fully freeze a baby. This value is divided by 6 when applying frost to ground-based enemies and by 10 for flying ones. For enemies, this value is also multiplied by "enemyFreezePowerMult". Uses "defaultIcePoopFreezePower" as the default value.
+				"enemyFreezePowerMult": 1.5, - multiplier which will be applied when freezing enemies via the ice explosion. Uses "defaultIcePoopEnemyFreezePowerMult" as the default value.
+			},
+			{
+				"name": "o_poop",
+				"col": [2],
+				"checkOccupied": 0,
+				"poopType": "gold",
+				"dontDropMoney": 1, - special variable that will prevent golden poop from dropping money when destroyed. Defaults to 0.
+				"otherVars": ["maxhp", "hp"], - needs to be paired with "otherVarsValues". If you want to set some specific variable for the spawned object/enemy, enter the variable name here and the value in "otherVarsValues". For example, these lines will set o_poop's "maxhp" to 200 and "hp" to 50.
+				"otherVarsValues": [200, 50], - needs to be paired with "otherVars".
+				"spawnType": "drop",
+			},
+			{
+				"name": "o_poop",
+				"lane": [6],
+				"checkOccupied": 0,
+				"poopType": "normal",
+				"otherVars": ["maxhp", "hp"],
+				"otherVarsValues": [200, 50],
+				"spawnType": "poof",
+				"playSound": "s_baby_avel_ghost", - plays a sound when the object spawns. If "spawnType" is set to "drop", this will replace the noise it makes when it hits the ground. Use UndertaleModTool to find sound names.
+			},
+		],
+		"wave2": - stuff described in this array will spawn when wave 2 starts
+		[
+			{
+				"name": "o_poop",
+				"col": [1],
+				"lane": [2],
+				"checkOccupied": 2,
+				"damageToOccupied": 69420, - works if "checkOccupied" is set to 2. Defines the damage your object will do to the object which is currently occupying the spot it's trying to take, *PER 1 POINT OF HP*. Set to 0.3 by default, which means that an object with 200 health will deal a maximum of 60 damage before getting destroyed (most babies have 80 health). Only works when the object gets spawned, not when some other object with "checkOccupied": 2 is contending with it.
+				"poopType": "gold",
+				"dontDropMoney": 1,
+				"otherVars": ["maxhp", "hp"],
+				"otherVarsValues": [200, 50],
+				"spawnType": "drop",
+				"timer": 100, - delay until the object gets spawned, in frames. Not related to the level timer and its speed.
+				"playSound": "sacrifice_Seraphim"
+			},
+			{ - spawns a regular poop at a random empty spot of the level.
+				"checkOccupied": 3,
+			},
+		],
+		"wave3":
+		[
+			{
+				"name": "o_whale",
+				"col": [10],
+				"lane": [6],
+				"checkOccupied": 0,
+				"spawnType": "drop",
+				"stun": 120, - when this enemy spawns, it will be stunned for the specified amount of frames. 0 by default.
+				"playSound": "Satan find.ogg",
+			},
+			{
+				"name": "o_baby_BBobby",
+				"col": [1],
+				"lane": [6],
+				"checkOccupied": 3,
+				"spawnType": "drop",
+				"babyIgnoreRebalance": 1, - this baby will ignore the changes from "levelBabyRebalance". This also needs to set to 1 if you want to manually change the stats of a spawned baby and it already has its stats overriden by "levelBabyRebalance".
+				"endangered": 1, - this baby is endangered and the level will be failed if it dies for any reason. This variable can also be applied to sorbets and icebergs.
+				"cantTakePills": 1, - this baby cannot take pills and will react negatively if the player tries to give it one.
+			},
+		],
+	},
+	
+	"levelShowText": - same as showText, but shows up at the start of the level.
+	{
+		"text": "Welcome to the tutorial level!@@",
+		"delay": 0,
+		"timer": 450,
+		"color": "c_lime",
+		"alphaCap": 1,
+	},
+	
+	"levelBabies": - table containing info about available babies for the level. Everything in it can be omitted, just like the table itself. IDs can be found in files from the "locales" folder. Active items and enemies are also supported! To add an active item, add 1000 to its ID. For a charmed enemy, add 10000.
+	{
+		"noCampaignBabies": 0, - If set to 1, you will not have any babies available except for the ones specified in "extraBabies".
+		"extraBabies": [15, 20, 1006, 10020, 10014], - You will be able to pick these babies even if you don't have them unlocked in Campaign. Also accepts "all" instead of one ID if you want all babies to be available.
+		"bannedBabies": [4, 15], - You will not be able to pick these babies. This is applied after "extraBabies". Can also be set to ["all"] if you want to ban all babies.
+		"mustHaveBabies": [2, 15], - These babies will be picked automatically and cannot be removed. Doesn't do anything if the baby is not available.
+	},
+	
+	"levelActives": - same as "levelBabies", but for actives. You don't need to add 1000 to the IDs.
+	{
+		"noCampaignActives": 1,
+		"extraActives": ["all"],
+		"bannedActives": [0,15],
+		"mustHaveActive": 1, - Only one active can be put here, obviously. If you don't want to force an active, set this to -1.
+	},
+	
+	"levelBabyRebalance": "babyBalance_for_example.json", - allows you to change some stats of babies and active items. .json file containing data about these changes needs to be placed in "levels/extrafiles/". Check out "levels/extrafiles/babyBalance_for_example_with_tutorial.json" for a more in-depth explaination.
+	
+	"levelPassivesT1": [10, 20], - tier 1 passive items for the level. Can also be set to ["all"] if you want the player to have all tier 1 passives in the game.
+	"levelPassivesT2": [2, 4, 5], - tier 2 passive items for the level. Can also be set to ["all"] if you want the player to have all tier 2 passives in the game.
+	
+	"levelChargers": [1,1,0,0,1,1], - sets which chargers are alive, from top to bottom. 1 = alive, 0 = gone. Must contain 6 values. By default, you start the level with 6 chargers.
+	
+	"levelDrawIncomingEnemies": ["o_fatty_idle", "o_fly_idle", "o_trite_idle", "o_whale_idle", "fly_double", "o_hardhead_red", "o_hardhead_idle", "o_gurgle_idle", "o_gaper_idle2"], - enemy SPRITES that will be drawn while picking babies. Usually they are called o_[enemyname]_idle, but some have different names. To uncover them, open I.RULE's data.win via UndertaleModTool, enter the name of a monster into the searchbar and expand the "sprites" list below it. Note that enemy subtypes (like double/quadruple flies and red hardheads) do not have idle sprites, so they will most likely they look like they are walking in place. They do have custom descriptions made by me though. There may also be some custom values not related to sprites, such as "notASprite_littleTrite".
+	
+	"levelCampaignReward": [-1, -1], - not intended for use in custom levels. Unlocks campaign stuff. First value defines the type of unlock (0 = baby, 1 = active) and the second one is the ID of the unlocked thing. If either of the two values is set to -1 or if the variable is omitted, beating the level will not unlock anything.
+	"levelCampaignBeaten": -1, - not intended for use in custom levels. If set to something other than -1, defines which campaign level was beaten.
+}
+
+Thanks for promoting the mod, Bruex!

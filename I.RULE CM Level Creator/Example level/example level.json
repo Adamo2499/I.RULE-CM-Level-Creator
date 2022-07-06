@@ -1,0 +1,560 @@
+{
+	"levelName": "Example Level",
+	"levelDescription": "Have fun making your own!",
+	"levelNameColor": 16776960,
+	"levelDescriptionColor": "c_fuchsia",
+	"levelHeartFallSpeed": 10,
+	"levelHeartValue": 690,
+	"levelHeartSize": 0.75,
+	"levelHeartTimer": 300,
+	"levelStartingHearts": 34,
+	"levelHeartsCap": 999999,
+	"levelWaveAmount": 54,
+	"levelBigWaves": [10,20,26,30,45],
+	"levelDrawWaveBorder": 0,
+	"levelDrawFlags": 0,
+	"levelDrawWaveBar": 1,
+	"levelTimerSpeed": 2,
+	"levelSpawnDelay": 548,
+	"levelTimerSpeedAltCondition": "less",
+	"levelEnemiesForAltSpeed": 1,
+	"levelTimerSpeedAlt": 1,
+	"levelDefaultTimerAfterWave": -150,
+	"levelIntensity": 0,
+	"levelIntensityChangeMultiplier": 0.25,
+	"levelBackground": "lvl2",
+	"levelMusic1": "mus_boss3",
+	"levelMusic2": "cellar layer.ogg",
+	"levelDrawTimer": 1,
+	"levelCampaignLocked": -1,
+	"levelHiddenUntilUnlocked": 0,
+	"levelSpikeBabyDoesntBreakPoop": 1,
+	"levelDisableCHADScaling": 1,
+	"levelBobsBrainExtraHealth": -999,
+	"levelBobsBrainExplodeUponDeath": 1,
+	"levelBobsBrainNoSound": 1,
+	"levelFrozenSpriteCap": -1,
+	"defaultIcePoopDontConvertPoop": 1,
+	"defaultIcePoopDontFreezeEnemies": 1,
+	"defaultIcePoopFreezePower": 180,
+	"defaultIcePoopEnemyFreezePowerMult": 0.1337,
+	"levelFlyDontBuzzEarly": 1,
+	"levelMaxBabies": 5,
+	"levelDisableCoinHUD": 1,
+	"levelMulliboomDefaultExplosionBabyDamage": 4321,
+	"levelMulliboomDefaultExplosionTileDamage": 5312,
+	"levelConditionEndWithHearts": 2000,
+	"levelConditionCollectTotalHearts": 6900,
+	"levelConditionMaxTotalHearts": 9999,
+	"levelConditionBabiesKilled": 10,
+	"levelConditionMaxBabiesOnScreen": 7,
+	"customSoundFiles": ["cellar.ogg", "cellar layer.ogg", "Satan find.ogg"],
+	
+	"levelWaveChanges":
+	{
+		"wave3":
+		{
+			"levelTimerSpeed": 1,
+			"levelTimerSpeedAltCondition": "less",
+			"levelEnemiesForAltSpeed": 3,
+			"levelTimerSpeedAlt": 2,
+			"levelIntensity": 0.25
+		},
+		"wave8":
+		{
+			"levelHeartFallSpeed": 0,
+			"levelIntensity": 1
+		},
+		"wave10":
+		{
+			"levelBackground": "lvl3",
+			"levelMusic1": "cellar.ogg",
+			"levelMusic2": "mus_boss1",
+		},
+		"wave21":
+		{
+			"levelHeartFallSpeed": 1,
+			"levelDrawFlags": 1,
+			"levelIntensity": 0,
+		},
+		"wave26":
+		{
+			"levelName": "EXAMPLE LEVEL!!!",
+			"levelDrawWaveBorder": 1,
+		},
+		"wave34":
+		{
+			"levelHeartValue": 100,
+			"levelHeartSize": 1.5,
+			"levelHeartTimer": -200,
+			"levelDrawWaveBar": 0,
+			"levelName": "",
+		},
+	},
+	
+	"levelWaves":
+	{
+		"wave1":
+		{
+			"enemies":
+			[
+				{
+					"name": "o_trite",
+					"lane": [2,3,5],
+					"xOffset": -10,
+				},
+				{
+					"name": "o_hardhead",
+					"lane": [2],
+					"health": 240,
+					"speedMod": 1
+				},
+			],
+			"levelSpawnDelay": -200,
+			"waveNotification": 0,
+		},
+		"wave3":
+		{
+			"levelSpawnDelay": 400,
+			"waveNotification": 1,
+		},
+		"wave4":
+		{
+			"enemies":[],
+			"levelSpawnDelay": 200,
+			"waveNotification": 1,
+		},
+		"wave5":
+		{
+			"enemies":
+			[
+				{}
+			],
+			"levelSpawnDelay": 200,
+		},
+		"wave6":
+		{
+		},
+		"wave7":
+		{
+			"enemies":
+			[
+				{
+					"name": "o_gurgle",
+					"lane": [4,6],
+					"damage": 69,
+					"pillChampion": 1,
+					"noChampionDrop": 1,
+				},
+				{
+					"name": "o_gurgle",
+					"heartChampion": 1,
+					"noChampionDrop": 1,
+				},
+				{
+					"name": "o_gurgle",
+					"lane": [1],
+					"moneyChampion": 1,
+					"noChampionDrop": 1,
+					"health": 222,
+				},
+			],
+		},
+		"wave8":
+		{
+			"enemies":
+			[
+				{
+					"name": "o_mulliboom",
+					"lane": [2],
+					"speedChampion": 1,
+					"speedMod": 0.6,
+					"scale": 0.5,
+					"shadowScale": 3,
+				},
+				{
+					"name": "o_mulliboom",
+					"lane": [2],
+					"clonesChampion": 1
+				},
+			],
+			"levelSpawnDelay": -200,
+		},
+		"wave9":
+		{
+			"enemies":
+			[
+				{
+					"name": "o_hardy",
+					"lane": [3],
+					"pillChampion": 1,
+					"heartChampion": 1,
+					"speedChampion": 1,
+					"moneyChampion": 1,
+					"clonesChampion": 1,
+				},
+			],
+		},
+		"wave12":
+		{
+			"enemies":
+			[
+				{
+					"name": "o_whale",
+					"lane": [6],
+					"xOffset": -500,
+					"otherVars": ["scale", "eatenBaby"],
+					"otherVarsValues": [1.5, 1],
+				},
+				{
+					"name": "o_whale",
+					"lane": [5],
+					"xOffset": -500,
+					"otherVars": ["scale", "eatenBaby"],
+					"otherVarsValues": [1.5, 1],
+				},
+				{
+					"name": "o_whale",
+					"lane": [1],
+					"xOffset": -500,
+					"otherVars": ["scale", "eatenBaby"],
+					"otherVarsValues": [1.5, 1],
+				},
+				{
+					"name": "o_whale",
+					"lane": [2],
+					"xOffset": -500,
+					"otherVars": ["scale", "eatenBaby"],
+					"otherVarsValues": [1.5, 1],
+				},				
+			],
+			"levelSpawnDelay": 500,
+			"waveNotification": 0,
+			"displayMessage": "finalWave",
+			"displayMessage2": "shitstormBlue",
+		},
+		"wave15":
+		{
+			"enemies":
+			[
+				{
+					"name": "o_shitstorm",
+					"lane": [3],
+					"xOffset": 0,
+					"distToTravel": 244,
+					"timeToTravel": 60,
+					"initialDelay": 60,
+					"fallTime": 120,
+					"speedUpFactor": 1,
+					"dontSpeedUp": 0,
+					"extraEffect": "midasBabies",
+					"skin": "ice",
+					"effectAffectCharmed": 0,
+					"midasHealthRatio": 63,
+					"midasHealthRatioCharmed": 21,
+					"delayBeforeDeparture": 0,
+					"delayBeforeAppear": 60,
+					"scale": 0.5,
+					"scaleReduction": 0.1,
+					"silentRetreat": 1,
+					"dontComeBack": 1,
+					"spawnWhileMoving": 1,
+					"defaultStun": 120,
+					"stuffToSpawn":
+					[
+						{
+							"name": "o_gaper",
+							"col": [8,9],
+							"lane": [4,6],
+							"checkOccupied": 0,
+						},
+						{
+							"name": "o_gaper",
+							"col": [8,9],
+							"lane": [4,6],
+							"checkOccupied": 0,
+							"stun": 360,
+						},
+						{
+							"name": "o_poop",
+							"col": [4,5,6],
+							"checkOccupied": 2,
+							"damageToOccupied": 69420,
+							"poopType": "gold",
+							"dontDropMoney": 1,
+							"otherVars": ["maxhp", "hp"],
+							"otherVarsValues": [200, 50],
+							"playSound": "sacrifice_Seraphim",
+							"shitstormTimer": 5,
+						},
+						{
+							"name": "o_poop",
+							"checkOccupied": 3,
+							"poopType": "ice",
+							"otherVars": ["maxhp", "hp"],
+							"otherVarsValues": [200, 1],
+						},
+					],
+				},
+			],
+			"displayMessage": "shitstormYellow",
+			"displayMessage2": "shitstormRed",
+		},
+		"wave17":
+		{
+			"enemies":
+			[
+				{
+					"name": "o_fatty",
+					"lane": [6],
+					"fartDisabled": 1,
+					"xOffset": 0,
+					"repeatSpawn": 3,
+					"repeatExtraOffset": 90,
+				},
+				{
+					"name": "o_fly",
+					"lane": [3],
+					"flyType": "double",
+					"xOffset": 0,
+				},
+				{
+					"name": "o_fly",
+					"lane": [5],
+					"spriteIndex": "fly_quad",
+					"xOffset": 0,
+				},
+			],
+		},
+		"wave18":
+		{
+			"enemies":
+			[
+				{
+					"name": "o_trite",
+					"lane": [3],
+					"randomLeaps": 2,
+					"leapStraight": 1,
+					"leapDist": 2,
+					"speedMod": 0.05,
+					"fixedLeapTimer": 100,
+					"immuneInMidair": 1,
+					"leapDirInitial": 0,
+					"idleAnimationBasedOnSpeed": 0,
+					"disableBabyCheck": 1,
+					"leapTimerInitial": 100,
+					"leapRecovery": 160,
+					"triteAttackSpeed": 0.1,
+					"repeatSpawn": 2,
+					"repeatTriteTimerOffset": -90,
+				},
+			],
+			"showText":
+			{
+				"text": "Here's some interesting text to read@while babies are shooting at stuff@@@@@@@@@@@@@@@",
+				"delay": 950,
+				"timer": 600,
+				"color": "c_white",
+				"alphaCap": 0.5,
+			},
+			"levelSpawnDelay": -10,
+		},
+		"wave19":
+		{
+			"enemies":
+			[
+				{
+					"name": "o_squirt",
+					"lane": [4],
+					"xOffset": -90,
+					"speedMod": 0.025,
+					"fixedDashTimer": 180,
+					"fixedDashTimerMini": 30,
+					"dashTimerInitial": 0,
+					"dashTimerInitialMini": -9999,
+					"pushForceSelf": 0,
+					"pushForceEnemies": 0.1337,
+					"pushForceObjects": 45,
+					"dashFalloffMult": 0,
+					"dashDuration": 99999,
+					"dashDurationMini": 22,
+					"sexyDeepVoice": 1,
+					"preggers": 3,
+					"squirtStage": "squirt",
+					"squirtType": "gold",
+					"freezePower": 420420420,
+					"enemyFreezePowerMult": 0,
+					"dontFreezeEnemies": 0,
+					"dontConvertPoop": 1,
+					"dontScreamAfterStarting": 1,
+					"canHitSpikeBaby": 1,
+					"animationSpeedMult": 2,
+				},
+			],
+			"levelSpawnDelay": -300,
+		},
+		"wave20":
+		{
+			"enemies":
+			[
+				{
+					"name": "o_maw",
+					"lane": [4],
+					"projSpeed": 1,
+					"shootDistance": 5,
+					"shootTimer": 10,
+				},
+			],
+			"levelSpawnDelay": -300,
+			"playSound": "s_domestic_abuse",
+		},
+		"wave21":
+		{
+			"enemies":
+			[
+				{
+					"name": "o_mrShy",
+					"lane": [4],
+					"xOffset": 0,
+					"speedMod": 0.3,
+					"maskChampion": "moneyChampion",
+				},
+			],
+			"levelSpawnDelay": -300,
+			"displayMessage": "infestation",
+		},
+		"wave22":
+		{
+			"enemies":
+			[
+				{
+					"name": "o_mulliboom",
+					"lane": [4],
+					"explosionBabyDamage": 80,
+					"explosionTileDamage": 690,
+					"timeToExplode": 800,
+				},
+			],
+			"levelSpawnDelay": -300,
+		},
+	},
+	
+	"levelDropObjects":
+	{
+		"wave0":
+		[
+			{
+				"name": "o_poop",
+				"col": [3,4,6],
+				"lane": [4,5],
+				"checkOccupied": 0,
+				"poopType": "ice",
+				"spawnType": "drop",
+				"health": 69,
+				"dontConvertPoop": 0,
+				"dontFreezeEnemies": 0,
+				"freezePower": 90,
+				"enemyFreezePowerMult": 1.5,
+			},
+			{
+				"name": "o_poop",
+				"col": [2],
+				"checkOccupied": 0,
+				"poopType": "gold",
+				"dontDropMoney": 1,
+				"otherVars": ["maxhp", "hp"],
+				"otherVarsValues": [200, 50],
+				"spawnType": "drop",
+			},
+			{
+				"name": "o_poop",
+				"lane": [6],
+				"checkOccupied": 0,
+				"poopType": "normal",
+				"otherVars": ["maxhp", "hp"],
+				"otherVarsValues": [200, 50],
+				"spawnType": "poof",
+				"playSound": "s_baby_avel_ghost",
+			},
+		],
+		"wave2":
+		[
+			{
+				"name": "o_poop",
+				"col": [1],
+				"lane": [2],
+				"checkOccupied": 2,
+				"damageToOccupied": 69420,
+				"poopType": "gold",
+				"dontDropMoney": 1,
+				"otherVars": ["maxhp", "hp"],
+				"otherVarsValues": [200, 50],
+				"spawnType": "drop",
+				"timer": 100,
+				"playSound": "sacrifice_Seraphim"
+			},
+			{
+				"checkOccupied": 3,
+			},
+		],
+		"wave3":
+		[
+			{
+				"name": "o_whale",
+				"col": [10],
+				"lane": [6],
+				"checkOccupied": 0,
+				"spawnType": "drop",
+				"stun": 120,
+				"playSound": "Satan find.ogg",
+			},
+			{
+				"name": "o_baby_BBobby",
+				"col": [1],
+				"lane": [6],
+				"checkOccupied": 3,
+				"spawnType": "poof",
+				"babyIgnoreRebalance": 1,
+				"endangered": 1,
+				"cantTakePills": 1,
+			},
+		],
+	},
+	
+	"levelShowText":
+	{
+		"text": "Welcome to the tutorial level!@@",
+		"delay": 0,
+		"timer": 450,
+		"color": "c_lime",
+		"alphaCap": 1,
+	},
+	
+	"levelBabies":
+	{
+		"noCampaignBabies": 0,
+		"extraBabies": [15, 20, 1006, 10020, 10014],
+		"bannedBabies": [4, 15],
+		"mustHaveBabies": [2, 15],
+	},
+	
+	"levelActives":
+	{
+		"noCampaignActives": 1,
+		"extraActives": ["all"],
+		"bannedActives": [0,15],
+		"mustHaveActive": 1,
+	},
+	
+	"levelBabyRebalance": "babyBalance_for_example.json",
+	
+	"levelPassivesT1": [10, 20],
+	"levelPassivesT2": [2, 4, 5],
+	
+	"levelChargers": [1,1,0,0,1,1],
+	
+	"levelDrawIncomingEnemies": ["o_fatty_idle", "o_fly_idle", "o_trite_idle", "o_whale_idle", "fly_double", "o_hardhead_red", "o_hardhead_idle", "o_gurgle_idle", "o_gaper_idle2"],
+	
+	"levelCampaignReward": [-1, -1],
+	"levelCampaignBeaten": -1,
+}

@@ -68,6 +68,10 @@ namespace I.RULE_CM_Level_Creator
             customSoundFiles.Add("");
             customSoundFiles.Add("");
             customSoundFiles.Add("");
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox3.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox1.SelectedIndex = 0;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -108,6 +112,81 @@ namespace I.RULE_CM_Level_Creator
                 }
             }
             return isAnElement;
+        }
+
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked)
+            {
+                levelDrawTimer = 1;
+            }
+            else
+            {
+                levelDrawTimer = 0;
+            }
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox2.Checked)
+            {
+                levelTimerSpeedAltCondition = "more";
+            }
+            else
+            {
+                levelTimerSpeedAltCondition = "less";
+            }
+        }
+
+        private void checkBox5_CheckedChanged(object sender, EventArgs e)
+        {
+            levelDrawWaveBorder = checkBox5.Checked;
+        }
+
+        private void checkBox6_CheckedChanged(object sender, EventArgs e)
+        {
+            levelDrawFlags = checkBox6.Checked;
+        }
+
+        private void checkBox7_CheckedChanged(object sender, EventArgs e)
+        {
+            levelDrawWaveBar = checkBox7.Checked;
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (comboBox1.SelectedIndex)
+            {
+                case 0:
+                    levelBackground = "lvl1";
+                    break;
+                case 1:
+                    levelBackground = "lvl2";
+                    break;
+                case 2:
+                    levelBackground = "lvl3";
+                    break;
+                case 3:
+                    levelBackground = "megaPlum";
+                    break;
+                case 4:
+                    levelBackground = "ragdoll";
+                    break;
+                case 5:
+                    levelBackground = "middleHorn";
+                    break;
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                comboBox2.Items.Add(openFileDialog1.SafeFileName);
+                comboBox3.Items.Add(openFileDialog1.SafeFileName);
+            }
+
         }
     }
 }
